@@ -20,7 +20,7 @@ function! ncm2_syntax#on_complete(ctx) abort
   let ccol = a:ctx['ccol']
   let typed = a:ctx['typed']
 
-  let kw = matchstr(typed, '\w\+$')
+  let kw = matchstr(typed, '\w')
   let kwlen = len(kw)
 
   let matches = necosyntax#gather_candidates()
@@ -34,6 +34,5 @@ function! ncm2_syntax#init() abort
         \ 'mark': 'syntax',
         \ 'priority': 8,
         \ 'on_complete': 'ncm2_syntax#on_complete',
-        \ 'word_pattern': ['\w\+\.$'],
         \ })
 endfunction
