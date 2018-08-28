@@ -17,16 +17,9 @@ function! ncm2_syntax#on_complete(ctx) abort
     let s:initialized = 1
   endif
 
-  let ccol = a:ctx['ccol']
-  let typed = a:ctx['typed']
-
-  let kw = matchstr(typed, '\w')
-  let kwlen = len(kw)
-
   let matches = necosyntax#gather_candidates()
-  let startccol = ccol - kwlen
 
-  call ncm2#complete(a:ctx, startccol, matches)
+  call ncm2#complete(a:ctx, a:ctx['startccol'], matches)
 endfunction
 
 function! ncm2_syntax#init() abort
